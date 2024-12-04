@@ -4,6 +4,8 @@ import "./globals.css";
 import ThemeProvider from "@/components/ThemeProvider/ThemeProvider";
 import Header from "@/components/Header/Header";
 import { Footer } from "@/components/Footer/Footer";
+import { NextAuthProvider } from "@/components/AuthProvider/AuthProvider";
+import Toast from "@/components/Toast/Toast";
 
 const geistSans = localFont({
   src: "../fonts/GeistVF.woff",
@@ -35,15 +37,18 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <ThemeProvider>
-          <main className="font-normal">
-            {/* Header */}
-            <Header />
-            {children}
-            {/* Footer */}
-            <Footer />
-          </main>
-        </ThemeProvider>
+        <NextAuthProvider>
+          <ThemeProvider>
+            <Toast />
+            <main className="font-normal">
+              {/* Header */}
+              <Header />
+              {children}
+              {/* Footer */}
+              <Footer />
+            </main>
+          </ThemeProvider>
+        </NextAuthProvider>
       </body>
     </html>
   );

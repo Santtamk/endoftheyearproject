@@ -1,4 +1,13 @@
 import account from "./account";
+import hotelRoom from "./hotelRoom";
+import review from "./review";
 import user from "./user";
+import verificationToken from "./verificationToken";
 
-export const schemaTypes = [user, account];
+export const schemaTypes = [
+  user,
+  account,
+  hotelRoom,
+  review,
+  verificationToken,
+];
