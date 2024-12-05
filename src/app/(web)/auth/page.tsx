@@ -27,9 +27,10 @@ const Auth = () => {
 
     try {
       const user = await signUp(formData);
-      if (user) {
+      // if (user) {
+        console.log('user:', user)
         toast.success("Success. Please Sign up");
-      }
+      // }
     } catch (error) {
       console.log(error);
       toast.error("Something wen't wrong");
@@ -63,6 +64,15 @@ const Auth = () => {
             onChange={handleInputChange}
           />
           <input
+            type="text"
+            name="name"
+            placeholder="John Doe"
+            required
+            className={inputStyles}
+            value={formData.name}
+            onChange={handleInputChange}
+          />
+          <input
             type="password"
             name="password"
             placeholder="password"
@@ -70,15 +80,6 @@ const Auth = () => {
             minLength={6}
             className={inputStyles}
             value={formData.password}
-            onChange={handleInputChange}
-          />
-          <input
-            type="text"
-            name="name"
-            placeholder="John Doe"
-            required
-            className={inputStyles}
-            value={formData.name}
             onChange={handleInputChange}
           />
           <button
