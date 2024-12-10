@@ -1,5 +1,7 @@
 "use client";
 import themeContext from "@/context/themeContext";
+import { useSession } from "next-auth/react";
+import Image from "next/image";
 import Link from "next/link";
 import { useContext } from "react";
 import { FaUserCircle } from "react-icons/fa";
@@ -8,6 +10,10 @@ import { MdDarkMode, MdOutlineLightMode } from "react-icons/md";
 const Header = () => {
   const { darkTheme, setDarkTheme } = useContext(themeContext);
 
+  const { data: session } = useSession();
+
+  console.log(session);
+
   return (
     <header className="py-10 px-4 container mx-auto text-xl flex flex-wrap md:flex-nowrap items-center justify-between">
       <div className="flex items-center w-full md:2/3">
@@ -15,10 +21,22 @@ const Header = () => {
           StayEase
         </Link>
         <ul className="flex items-center ml-5">
-          <li>
-            <Link href="/auth">
-              <FaUserCircle className="cursor-pointer" />
-            </Link>
+          <li className="flex items-center">
+            {session?.user ? (
+              <Link href={`/users/${session.user.id}`}>
+                {session.user.image ? (
+                  <div className="w-10 h-10 rounded-full overflow-hidden">
+                    <Image  src={session.user.image} alt={session.user.image} width={40} height={40} />
+                  </div>
+                ):
+                <FaUserCircle className="cursor-pointer" />
+              }
+              </Link>
+            ) : (
+              <Link href="/auth">
+                <FaUserCircle className="cursor-pointer" />
+              </Link>
+            )}
           </li>
           <li className="ml-2">
             {darkTheme ? (
