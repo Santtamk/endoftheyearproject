@@ -1,3 +1,4 @@
+import FeaturedRoom from "@/components/FeaturedRoom/FeaturedRoom";
 import Gallery from "@/components/Gallery/Gallery";
 import HeroSection from "@/components/HeroSection/HeroSection";
 import NewsLetter from "@/components/NewsLetter/NewsLetter";
@@ -8,7 +9,7 @@ export default function Home() {
     <>
       <HeroSection />
       <PageSearch />
-      {/* Featured Room */}
+      <FeaturedRoom /> 
       <Gallery />
       <NewsLetter />
     </>
